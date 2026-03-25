@@ -10,17 +10,20 @@ public class Inimigo : MonoBehaviour
     private bool esperando = false;
     private GameObject jogador;
     private SpriteRenderer render;
+    private Animator animador;
     private int modos = 0; //0 -> Patrulha | 1 -> Perseguição
     void Start()
     {
         jogador = GameObject.FindWithTag("Player");
         render = GetComponent<SpriteRenderer>();
+        animador = GetComponent<Animator>();
     }
 
     void Update()
     {
         if(modos == 0) Patrulha();
         else Perseguicao();
+        animador.SetBool("esperando", esperando);
     }
 
     void Patrulha()
