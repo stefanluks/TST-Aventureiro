@@ -42,7 +42,7 @@ public class Jogador : MonoBehaviour
     {
         if(objeto.gameObject.tag == "Finish")
         {
-            Debug.Log("fase finalizada!");
+            GameManager.instancia.TrocarCena();
         }
         if(objeto.gameObject.tag == "orbe")
         {
