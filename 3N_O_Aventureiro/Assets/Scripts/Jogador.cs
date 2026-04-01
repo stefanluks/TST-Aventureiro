@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Jogador : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class Jogador : MonoBehaviour
     {
         if(colisao.gameObject.tag == "Finish")
         {
-            Debug.Log("Fase concluida!!");
+            GameManager.instancia.TrocarCena();
         }
         if(colisao.gameObject.tag == "orbe")
         {
