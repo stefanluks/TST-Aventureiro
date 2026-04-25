@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instancia {get; private set;}
-    [SerializeField] private List<string> fases;
+    [SerializeField] private List<Fase> fases;
     private int cenaAtual = 0;
+    public int orbesColetados = 0;
     void Awake()
     {
         if(instancia != null && instancia != this) //&& -> AND || -> OR
@@ -23,10 +24,19 @@ public class GameManager : MonoBehaviour
 
     public void TrocarCena()
     {
-        cenaAtual++;
-        if(cenaAtual < fases.Count)
+        if(orbesColetados == fases[cenaAtual].qtdOrbes)
         {
-            SceneManager.LoadScene(fases[cenaAtual]);
+            cenaAtual++;
+            if(cenaAtual < fases.Count-1)
+            {
+                orbesColetados = 0;
+                SceneManager.LoadScene(fases[cenaAtual].nome);
+            }
         }
+    }
+
+    public void ColetarOrbe()
+    {
+        orbesColetados++;
     }
 }

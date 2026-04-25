@@ -45,6 +45,7 @@ public class Jogador : MonoBehaviour
         if(colisao.gameObject.tag == "orbe")
         {
             Destroy(colisao.gameObject);
+            GameManager.instancia.ColetarOrbe();
         }
     }
 }

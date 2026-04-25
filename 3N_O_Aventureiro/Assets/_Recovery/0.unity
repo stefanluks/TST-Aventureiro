@@ -822,15 +822,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManage
   fases:
-  - nome: principal
-    qtdOrbes: 1
-  - nome: fase1
-    qtdOrbes: 5
-  - nome: fase2
-    qtdOrbes: 10
-  - nome: fase3
-    qtdOrbes: 12
-  orbesColetados: 0
+  - principal
+  - fase1
+  - fase2
 --- !u!4 &1375467988
 Transform:
   m_ObjectHideFlags: 0
