@@ -1,22 +1,65 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InterfaceControll : MonoBehaviour
 {
-    [SerializeField] private Text titulo;
-    private int cont = 0;
-    private bool escondido = false;
+    public static InterfaceControll instancia {get; private set; }
+    [Header("MENU DA INTERFACE")]
+    [SerializeField] private GameObject menuPrincipal;
+    [SerializeField] private GameObject menuOpcoes;
+    [SerializeField] private GameObject hud;
+    [SerializeField] private GameObject transicao;
 
-    void Update(){
-        titulo.text = "Cliques: "+cont;
+    void Awake()
+    {
+        if(instancia != null && instancia != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instancia = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
-    public void Clicando(){
-        cont++;
+    private int id_tela_atual = 0;
+
+    public void Jogar()
+    {
+        SceneManager.LoadScene("Principal");
+        TrocarTela(2);
     }
 
-    public void Escondendo(){
-        titulo.gameObject.SetActive(escondido);
-        escondido = !escondido;
+    public void Opcoes()
+    {
+        TrocarTela(1);
     }
+
+    void TrocarTela(int id_tela)
+    {
+        transicao.SetActive(true);
+        id_tela_atual = id_tela;
+    }
+
+    public void MudarTela()
+    {
+        if(id_tela_atual == 1)
+        {
+            menuOpcoes.SetActive(!menuOpcoes.activeSelf);
+        }
+        else
+        {
+            menuPrincipal.SetActive(false);
+            hud.SetActive(true);
+        }
+    }
+
+
+    public void Sair()
+    {
+        Debug.Log("Jogo Encerrado!");
+    }
+
 }
